@@ -1,0 +1,5 @@
+server  {
+#    include templates/ip4_1_80; 
+	listen 80;
+    return 404;
+}

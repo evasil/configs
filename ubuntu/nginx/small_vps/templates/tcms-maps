@@ -1,0 +1,4 @@
+map $http_cookie $tcms_no_cache {
+  default 0;
+#  ~bookmarks 1;
+}

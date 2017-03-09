@@ -1,0 +1,30 @@
+server {
+
+#aio threads=pst;
+
+include templates/ip4_1_80;
+
+server_name kvsexample.com www.kvsexample.com check.kvsexample.com;
+
+error_log	/var/log/nginx/kvsexample.com.error.log;
+
+
+root /srv/www/kvsexample.com;
+
+access_log off;
+
+#if ($host !~* ^(kvsexample.com|www.kvsexample.com)$ ) {
+#    return 444;
+#}
+
+include templates/static-kvs;
+
+include templates/php-kvs;
+
+include templates/kvs-player-rewrite;
+
+include templates/kvs-rewrite;
+
+}  # close server
+
+

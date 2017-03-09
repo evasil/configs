@@ -1,0 +1,5 @@
+## Rewrites for TCMS
+
+rewrite ^/ith\/(.*)$ /r/thumbs/$1 last;
+
+

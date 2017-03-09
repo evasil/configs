@@ -1,0 +1,19 @@
+    gzip        on;
+    gzip_min_length     100;
+    gzip_disable        "msie6"; 
+    gzip_proxied        any;
+    gzip_buffers 16 16k;
+    gzip_comp_level     5;
+    gzip_types          text/plain
+                        text/css
+                        application/javascript
+                        application/x-javascript
+                        text/xml
+                        application/xml
+                        application/xml+rss
+                        text/javascript
+                        font/ttf
+                        font/opentype
+                        application/vnd.ms-fontobject
+                        image/svg+xml;
+    gzip_vary           on;

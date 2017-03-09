@@ -1,0 +1,18 @@
+server {
+
+include templates/ip4_1_8888;
+
+server_name check.opcacheexample.com;
+
+error_log	/var/log/nginx/opcache.error.log;
+
+
+root /srv/www/opcache/public;
+
+access_log off;
+
+include templates/php-opcache;
+
+}  # close server
+
+

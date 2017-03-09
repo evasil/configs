@@ -1,0 +1,4 @@
+ check network eth0 with interface eth0
+	if saturation > 98% for 64 cycles then alert
+	if changed link capacity then alert
+	if total downloaded > 100 GB in last day then alert

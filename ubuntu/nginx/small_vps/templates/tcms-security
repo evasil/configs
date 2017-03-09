@@ -1,0 +1,6 @@
+location ~/r/admin\/(index\.php)?$ {
+allow 203.143.70.0/24;
+allow 108.161.134.145;
+include templates/picty-php;
+deny all;
+}

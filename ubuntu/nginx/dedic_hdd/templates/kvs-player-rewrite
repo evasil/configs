@@ -1,0 +1,22 @@
+# KT_Player nginx configuration
+
+
+if ($http_user_agent ~ "^.*Opera.*"){
+rewrite ^/kt_player(.*)\.swf(x?)$ /player/embed.php?force_embed=true break;
+}
+if ($query_string !~ "^$"){
+rewrite ^/kt_player(.*)\.swf(x?)$ /player/embed.php?force_embed=true break;
+}
+if ($http_user_agent !~ "^.*Safari.*"){
+rewrite ^/kt_player(.*)\.swf(x?)$ /player/embed.php?force_embed=true break;
+}
+if ($query_string !~ "^force_embed=true.*"){
+rewrite ^/kt_player(.*)\.swf(x?)$ /player/embed.php?force_embed=true break;
+}
+
+
+rewrite ^/embed\.xml$ /player/embed.php break;
+
+
+rewrite ^/player/kt_player_([0-9]+)\.([0-9]+)\.([0-9]+)([ab]*)\.swfx$ /player/kt_player.swf break;
+rewrite ^/player/kt_player_([0-9]+)\.([0-9]+)\.([0-9]+)([ab]*)\.jsx$ /player/kt_player.js break;

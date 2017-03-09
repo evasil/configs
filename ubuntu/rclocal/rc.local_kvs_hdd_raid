@@ -1,0 +1,44 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+
+# Create TMP location for PST KVS
+
+if [ ! -d /var/run/pst-kvs-tmp ]; then
+  mkdir /var/run/pst-kvs-tmp
+  chown www-data:www-data /var/run/pst-kvs-tmp
+  chmod 777 /var/run/pst-kvs-tmp
+fi
+
+# Increase temp
+mount -t tmpfs tmpfs /run -o remount,size=6G
+
+# RAID tuning
+
+blockdev --setra 65536 /dev/sda
+blockdev --setra 65536 /dev/sdb
+blockdev --setra 65536 /dev/sdc
+blockdev --setra 65536 /dev/sdd
+blockdev --setra 65536 /dev/sde
+blockdev --setra 65536 /dev/sdf
+blockdev --setra 65536 /dev/md0
+blockdev --setra 65536 /dev/md127
+
+# Outgoing port 80 traffic shaping to 285Mbps
+/etc/scripts/setlimit.sh 265
+
+# Rub IP ban script
+
+/root/ip_ban.sh >> /var/log/syslog
+
+exit 0

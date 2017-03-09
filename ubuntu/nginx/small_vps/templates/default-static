@@ -1,0 +1,48 @@
+#TEST
+
+
+   location /nginx_status {
+        # Turn on nginx stats
+        stub_status on;
+
+        # Security: Only allow access from 192.168.1.100 IP #
+	allow 203.143.70.29;
+	allow 110.174.175.90;
+   
+        # Send rest of the world to /dev/null #
+#        deny all;
+   }
+
+
+location ~* ^.+\.(html|js|css)$ {
+    expires max;
+    add_header Cache-Control "public";
+    fastcgi_hide_header Set-Cookie;
+    etag on;
+}
+
+location ~* ^.+\.(jpg|jpeg|gif|png|ico||svg|svgz|mp4|ogg|ogv|webm|htc|webp)$ {
+
+    aio on;
+    directio 12k;
+    output_buffers 8 512k;
+
+    etag on;
+
+  expires max;
+  add_header Cache-Control "public";
+  fastcgi_hide_header Set-Cookie;
+}
+
+location ~* ^.+\.(otf|eot|ttf|woff)$ {
+  expires max;
+    add_header Access-Control-Allow-Origin *;
+    fastcgi_hide_header Set-Cookie;
+    etag on;
+}
+
+
+location = /robots.txt {
+allow all;
+log_not_found off;
+}

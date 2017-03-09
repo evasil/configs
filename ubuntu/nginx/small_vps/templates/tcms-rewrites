@@ -1,0 +1,32 @@
+## Rewrites for TCMS
+
+rewrite ^/ith\/(.*)$ /r/thumbs/$1 last;
+
+rewrite ^/sitemap.xml$ /sitemap.php last;
+rewrite ^/sitemapglr.xml$ /sitemapglr.php last;
+rewrite ^/sitemaptags.xml$ /sitemaptags.php last;
+
+# Gallery link
+
+location /glr {
+        rewrite ^/glr/([^/]+)/$ /r/cgi/out.php?force_template=gallery_pct&url=content&slug=$1;
+}
+
+# Sponsor page
+
+location /ctp {
+        rewrite ^/ctp/([^/]+)/$ /r/tube/index.php?force_template=index_pct&sponsor_slug=$1;
+}
+
+# Sponsor Link
+
+location /jts {
+	rewrite ^/jts/(.*)/$ /r/tube/?action=sponsor&sponsor_slug=$1;
+}
+
+# Tags
+
+location /tag { 
+    rewrite ^/tag/([^/]+)/$ /r/tube/index.php?force_template=index_pct&tag=$1;
+}
+

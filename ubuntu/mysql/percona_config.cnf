@@ -1,0 +1,69 @@
+[mysql]
+
+# CLIENT #
+# port                           = 3306
+socket                         = /tmp/mysql.sock
+
+
+[client]
+socket=/tmp/mysql.sock
+
+[mysqld]
+
+# GENERAL #
+tmpdir = /srv/mysql/mysqltmp
+
+user                           = mysql
+default-storage-engine         = InnoDB
+socket                         = /tmp/mysql.sock
+pid-file                       = /tmp/mysql.pid
+
+default-time-zone=Australia/Melbourne
+date_format="%Y%m%d"
+datetime_format="%Y-%m-%d %H:%i:%s"
+
+# MyISAM #
+key-buffer-size                = 32M
+myisam-recover                 = FORCE,BACKUP
+
+# SAFETY #
+sql_mode = ALLOW_INVALID_DATES
+max-allowed-packet             = 16M
+max-connect-errors             = 1000000
+# skip-name-resolve
+innodb                         = FORCE
+innodb-strict-mode             = off
+
+# DATA STORAGE #
+datadir                        = /srv/mysql
+
+# BINARY LOGGING #
+log-bin                        = /srv/mysql/mysql-bin
+expire-logs-days               = 3
+sync-binlog                    = 1
+log-bin-trust-function-creators = 1
+
+# CACHES AND LIMITS #
+tmp-table-size                 = 128M
+max-heap-table-size            = 128M
+query-cache-type               = 0
+query-cache-size               = 0
+max-connections                = 500
+thread-cache-size              = 16
+open-files-limit               = 65535
+table-definition-cache         = 1024
+table-open-cache               = 1024
+
+# INNODB #
+innodb-flush-method            = O_DIRECT
+innodb-log-files-in-group      = 2
+innodb-log-file-size           = 128M
+innodb-flush-log-at-trx-commit = 0
+innodb-file-per-table          = 1
+innodb-buffer-pool-size        = 1G
+
+# LOGGING #
+log-error                      = /var/log/mysql/mysql-error.log
+log-queries-not-using-indexes  = 1
+slow-query-log                 = 1
+slow-query-log-file            = /var/log/mysql/mysql-slow.log

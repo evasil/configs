@@ -1,0 +1,359 @@
+# KVS rewrites
+#rewrite_log on;
+
+  rewrite ^/js/(.*)_([0-9]+)\.([0-9]+)\.([0-9]+)([ab]*)\.jsx$ /js/$1.js break;
+
+  rewrite ^/sitemap.xml$ /sitemap.php break; 
+
+  rewrite ^/rss/tags/(.*)/$ /rss.php?tag=$1 break; 
+  rewrite ^/rss/categories/(.*)/$ /rss.php?category=$1 break;
+  rewrite ^/rss/(.*)$ /rss.php break;
+
+  rewrite ^/videos/([0-9]+)/$ /videos_list.php?from=$1 break; 
+  rewrite ^/videos/([0-9]+)/([^/]+)/([0-9]+)/$ /view_video.php?id=$1&dir=$2&from=$3 break; 
+  rewrite ^/videos/([0-9]+)/([^/]+)/$ /view_video.php?id=$1&dir=$2 break; 
+  rewrite ^/videos/(.*)$ /videos_list.php break;
+
+  rewrite ^/latest-updates/([0-9]+)/$ /videos_list_latest.php?from=$1 break;
+  rewrite ^/latest-updates/$ /videos_list_latest.php break;
+
+  rewrite ^/latest/([0-9]+)/$ /videos_list.php?from=$1 break; 
+  rewrite ^/latest/(.*)$ /videos_list.php break;
+
+  rewrite ^/most-popular/month/([0-9]+)/$ /videos_list.php?sort_by=video_viewed_month&from=$1 break; 
+  rewrite ^/most-popular/month/$ /videos_list.php?sort_by=video_viewed_month break; 
+  rewrite ^/most-popular/week/([0-9]+)/$ /videos_list.php?sort_by=video_viewed_week&from=$1 break; 
+  rewrite ^/most-popular/week/$ /videos_list.php?sort_by=video_viewed_week break; 
+  rewrite ^/most-popular/today/([0-9]+)/$ /videos_list.php?sort_by=video_viewed_today&from=$1 break; 
+  rewrite ^/most-popular/today/$ /videos_list.php?sort_by=video_viewed_today break; 
+  rewrite ^/most-popular/([0-9]+)/$ /videos_list.php?sort_by=video_viewed&from=$1 break; 
+  rewrite ^/most-popular/$ /videos_list.php?sort_by=video_viewed break;
+
+  rewrite ^/top-rated/month/([0-9]+)/$ /videos_list.php?sort_by=rating_month&from=$1 break; 
+  rewrite ^/top-rated/month/$ /videos_list.php?sort_by=rating_month break; 
+  rewrite ^/top-rated/week/([0-9]+)/$ /videos_list.php?sort_by=rating_week&from=$1 break; 
+  rewrite ^/top-rated/week/$ /videos_list.php?sort_by=rating_week break; 
+  rewrite ^/top-rated/today/([0-9]+)/$ /videos_list.php?sort_by=rating_today&from=$1 break; 
+  rewrite ^/top-rated/today/$ /videos_list.php?sort_by=rating_today break; 
+  rewrite ^/top-rated/([0-9]+)/$ /videos_list.php?sort_by=rating&from=$1 break; 
+  rewrite ^/top-rated/$ /videos_list.php?sort_by=rating break;
+
+  rewrite ^/watched-now/([0-9]+)/$ /videos_list.php?sort_by=last_time_view_date&from=$1 break; 
+  rewrite ^/watched-now/$ /videos_list.php?sort_by=last_time_view_date break;
+
+  rewrite ^/most_favourited/([0-9]+)/$ /videos_list.php?sort_by=most_favourited&from=$1 break;
+  rewrite ^/most_favourited/(.*)$ /videos_list.php?sort_by=most_favourited break;
+
+  rewrite ^/most_commented/([0-9]+)/$ /videos_list.php?sort_by=most_commented&from=$1 break;
+  rewrite ^/most_commented/(.*)$ /videos_list.php?sort_by=most_commented break;
+
+  rewrite ^/longest/([0-9]+)/$ /videos_list.php?sort_by=duration&from=$1 break;
+  rewrite ^/longest/(.*)$ /videos_list.php?sort_by=duration break;
+
+  rewrite ^/random/([0-9]+)/$ /videos_list.php?sort_by=pseudo_rand&from=$1 break;
+  rewrite ^/random/(.*)$ /videos_list.php?sort_by=pseudo_rand break;
+
+  rewrite ^/private/([0-9]+)/$ /videos_list.php?is_private=1&from=$1 break;
+  rewrite ^/private/(.*)$ /videos_list.php?is_private=1 break;
+
+  rewrite ^/search/([0-9]+)/$ /videos_list.php?from=$1 break;
+  rewrite ^/search/(.*)$ /videos_list.php break;
+
+  rewrite ^/categories/(.*)/latest/([0-9]+)/$ /videos_list.php?category=$1&from=$2 break; 
+  rewrite ^/categories/(.*)/latest/$ /videos_list.php?category=$1 break; 
+  rewrite ^/categories/(.*)/watched-now/([0-9]+)/$ /videos_list.php?category=$1&sort_by=last_time_view_date&from=$2 break; 
+  rewrite ^/categories/(.*)/watched-now/$ /videos_list.php?category=$1&sort_by=last_time_view_date break; 
+  rewrite ^/categories/(.*)/random/([0-9]+)/$ /videos_list.php?category=$1&sort_by=pseudo_rand&from=$2 break; 
+  rewrite ^/categories/(.*)/random/$ /videos_list.php?category=$1&sort_by=pseudo_rand break; 
+  rewrite ^/categories/(.*)/most_commented/([0-9]+)/$ /videos_list.php?category=$1&sort_by=most_commented&from=$2 break; 
+  rewrite ^/categories/(.*)/most_commented/$ /videos_list.php?category=$1&sort_by=most_commented break; 
+  rewrite ^/categories/(.*)/most_favourited/([0-9]+)/$ /videos_list.php?category=$1&sort_by=most_favourited&from=$2 break; 
+  rewrite ^/categories/(.*)/most_favourited/$ /videos_list.php?category=$1&sort_by=most_favourited break; 
+  rewrite ^/categories/(.*)/top-rated/([0-9]+)/$ /videos_list.php?category=$1&sort_by=rating&from=$2 break; 
+  rewrite ^/categories/(.*)/top-rated/$ /videos_list.php?category=$1&sort_by=rating break; 
+  rewrite ^/categories/(.*)/most-popular/([0-9]+)/$ /videos_list.php?category=$1&sort_by=video_viewed&from=$2 break; 
+  rewrite ^/categories/(.*)/most-popular/$ /videos_list.php?category=$1&sort_by=video_viewed break; 
+  rewrite ^/categories/(.*)/longest/([0-9]+)/$ /videos_list.php?category=$1&sort_by=duration&from=$2 break; 
+  rewrite ^/categories/(.*)/longest/$ /videos_list.php?category=$1&sort_by=duration break; 
+  rewrite ^/categories/(.*)/([0-9]+)/$ /videos_list.php?category=$1&from=$2 break; 
+  rewrite ^/categories/(.*)/$ /videos_list.php?category=$1 break;
+  rewrite ^/categories/(.*)$ /categories_videos.php break;
+
+  rewrite ^/tags/(.*)/latest/([0-9]+)/$ /videos_list.php?tag=$1&from=$2 break; 
+  rewrite ^/tags/(.*)/latest/$ /videos_list.php?tag=$1 break; 
+  rewrite ^/tags/(.*)/watched-now/([0-9]+)/$ /videos_list.php?tag=$1&sort_by=last_time_view_date&from=$2 break; 
+  rewrite ^/tags/(.*)/watched-now/$ /videos_list.php?tag=$1&sort_by=last_time_view_date break; 
+  rewrite ^/tags/(.*)/random/([0-9]+)/$ /videos_list.php?tag=$1&sort_by=pseudo_rand&from=$2 break; 
+  rewrite ^/tags/(.*)/random/$ /videos_list.php?tag=$1&sort_by=pseudo_rand break; 
+  rewrite ^/tags/(.*)/most_commented/([0-9]+)/$ /videos_list.php?tag=$1&sort_by=most_commented&from=$2 break; 
+  rewrite ^/tags/(.*)/most_commented/$ /videos_list.php?tag=$1&sort_by=most_commented break; 
+  rewrite ^/tags/(.*)/most_favourited/([0-9]+)/$ /videos_list.php?tag=$1&sort_by=most_favourited&from=$2 break; 
+  rewrite ^/tags/(.*)/most_favourited/$ /videos_list.php?tag=$1&sort_by=most_favourited break; 
+  rewrite ^/tags/(.*)/latest/([0-9]+)/$ /videos_list.php?tag=$1&from=$2 break; 
+  rewrite ^/tags/(.*)/latest/$ /videos_list.php?tag=$1 break; 
+  rewrite ^/tags/(.*)/top-rated/([0-9]+)/$ /videos_list.php?tag=$1&sort_by=rating&from=$2 break; 
+  rewrite ^/tags/(.*)/top-rated/$ /videos_list.php?tag=$1&sort_by=rating break; 
+  rewrite ^/tags/(.*)/most-popular/([0-9]+)/$ /videos_list.php?tag=$1&sort_by=video_viewed&from=$2 break; 
+  rewrite ^/tags/(.*)/most-popular/$ /videos_list.php?tag=$1&sort_by=video_viewed break; 
+  rewrite ^/tags/(.*)/longest/([0-9]+)/$ /videos_list.php?tag=$1&sort_by=duration&from=$2 break; 
+  rewrite ^/tags/(.*)/longest/$ /videos_list.php?tag=$1&sort_by=duration break; 
+  rewrite ^/tags/(.*)/([0-9]+)/$ /videos_list.php?tag=$1&from=$2 break; 
+  rewrite ^/tags/(.*)/$ /videos_list.php?tag=$1 break;
+
+  rewrite ^/models/(.*)/latest/([0-9]+)/$ /videos_list.php?model=$1&from=$2 break; 
+  rewrite ^/models/(.*)/latest/$ /videos_list.php?model=$1 break; 
+  rewrite ^/models/(.*)/watched-now/([0-9]+)/$ /videos_list.php?model=$1&sort_by=last_time_view_date&from=$2 break; 
+  rewrite ^/models/(.*)/watched-now/$ /videos_list.php?model=$1&sort_by=last_time_view_date break; 
+  rewrite ^/models/(.*)/random/([0-9]+)/$ /videos_list.php?model=$1&sort_by=pseudo_rand&from=$2 break; 
+  rewrite ^/models/(.*)/random/$ /videos_list.php?model=$1&sort_by=pseudo_rand break; 
+  rewrite ^/models/(.*)/most_commented/([0-9]+)/$ /videos_list.php?model=$1&sort_by=most_commented&from=$2 break; 
+  rewrite ^/models/(.*)/most_commented/$ /videos_list.php?model=$1&sort_by=most_commented break; 
+  rewrite ^/models/(.*)/most_favourited/([0-9]+)/$ /videos_list.php?model=$1&sort_by=most_favourited&from=$2 break; 
+  rewrite ^/models/(.*)/most_favourited/$ /videos_list.php?model=$1&sort_by=most_favourited break; 
+  rewrite ^/models/(.*)/latest/([0-9]+)/$ /videos_list.php?model=$1&from=$2 break; 
+  rewrite ^/models/(.*)/latest/$ /videos_list.php?model=$1 break; 
+  rewrite ^/models/(.*)/top-rated/([0-9]+)/$ /videos_list.php?model=$1&sort_by=rating&from=$2 break; 
+  rewrite ^/models/(.*)/top-rated/$ /videos_list.php?model=$1&sort_by=rating break; 
+  rewrite ^/models/(.*)/most-popular/([0-9]+)/$ /videos_list.php?model=$1&sort_by=video_viewed&from=$2 break; 
+  rewrite ^/models/(.*)/most-popular/$ /videos_list.php?model=$1&sort_by=video_viewed break; 
+  rewrite ^/models/(.*)/longest/([0-9]+)/$ /videos_list.php?model=$1&sort_by=duration&from=$2 break; 
+  rewrite ^/models/(.*)/longest/$ /videos_list.php?model=$1&sort_by=duration break; 
+  rewrite ^/models/(.*)/([0-9]+)/$ /videos_list.php?model=$1&from=$2 break; 
+  rewrite ^/models/(.*)/$ /videos_list.php?model=$1 break; 
+  rewrite ^/models/([0-9]+)/$ /models_list.php?from=$1 break;
+  rewrite ^/models/(.*)$ /models_list.php break;
+
+  rewrite ^/channels/(.*)/latest/([0-9]+)/$ /videos_list.php?channel=$1&from=$2 break; 
+  rewrite ^/channels/(.*)/latest/$ /videos_list.php?channel=$1 break; 
+  rewrite ^/channels/(.*)/watched-now/([0-9]+)/$ /videos_list.php?channel=$1&sort_by=last_time_view_date&from=$2 break; 
+  rewrite ^/channels/(.*)/watched-now/$ /videos_list.php?channel=$1&sort_by=last_time_view_date break; 
+  rewrite ^/channels/(.*)/random/([0-9]+)/$ /videos_list.php?channel=$1&sort_by=pseudo_rand&from=$2 break; 
+  rewrite ^/channels/(.*)/random/$ /videos_list.php?channel=$1&sort_by=pseudo_rand break; 
+  rewrite ^/channels/(.*)/most_commented/([0-9]+)/$ /videos_list.php?channel=$1&sort_by=most_commented&from=$2 break; 
+  rewrite ^/channels/(.*)/most_commented/$ /videos_list.php?channel=$1&sort_by=most_commented break; 
+  rewrite ^/channels/(.*)/most_favourited/([0-9]+)/$ /videos_list.php?channel=$1&sort_by=most_favourited&from=$2 break; 
+  rewrite ^/channels/(.*)/most_favourited/$ /videos_list.php?channel=$1&sort_by=most_favourited break; 
+  rewrite ^/channels/(.*)/latest/([0-9]+)/$ /videos_list.php?channel=$1&from=$2 break; 
+  rewrite ^/channels/(.*)/latest/$ /videos_list.php?channel=$1 break; 
+  rewrite ^/channels/(.*)/top-rated/([0-9]+)/$ /videos_list.php?channel=$1&sort_by=rating&from=$2 break; 
+  rewrite ^/channels/(.*)/top-rated/$ /videos_list.php?channel=$1&sort_by=rating break; 
+  rewrite ^/channels/(.*)/most-popular/([0-9]+)/$ /videos_list.php?channel=$1&sort_by=video_viewed&from=$2 break; 
+  rewrite ^/channels/(.*)/most-popular/$ /videos_list.php?channel=$1&sort_by=video_viewed break; 
+  rewrite ^/channels/(.*)/longest/([0-9]+)/$ /videos_list.php?channel=$1&sort_by=duration&from=$2 break; 
+  rewrite ^/channels/(.*)/longest/$ /videos_list.php?channel=$1&sort_by=duration break; 
+  rewrite ^/channels/(.*)/([0-9]+)/$ /videos_list.php?channel=$1&from=$2 break; 
+  rewrite ^/channels/(.*)/$ /videos_list.php?channel=$1 break; 
+  rewrite ^/channels/([0-9]+)/$ /channels_list.php?from=$1 break;
+  rewrite ^/channels/(.*)$ /sponsors_videos.php break;
+
+  rewrite ^/community/(.*)$ /community.php break;
+
+  rewrite ^/members/(.*)/favourite_videos/([0-9]+)/$ /member_fav_videos.php?user_id=$1&from=$2 break; 
+  rewrite ^/members/(.*)/favourite_videos/$ /member_fav_videos.php?user_id=$1 break; 
+  rewrite ^/members/(.*)/private_videos/([0-9]+)/$ /member_videos.php?is_private=1&user_id=$1&from=$2 break; 
+  rewrite ^/members/(.*)/private_videos/$ /member_videos.php?is_private=1&user_id=$1 break; 
+  rewrite ^/members/(.*)/public_videos/([0-9]+)/$ /member_videos.php?is_private=0&user_id=$1&from=$2 break; 
+  rewrite ^/members/(.*)/public_videos/$ /member_videos.php?is_private=0&user_id=$1 break; 
+  rewrite ^/members/(.*)/albums/([0-9]+)/$ /member_albums.php?user_id=$1&from=$2 break; 
+  rewrite ^/members/(.*)/albums/$ /member_albums.php?user_id=$1 break; 
+  rewrite ^/members/(.*)/friends/([0-9]+)/$ /member_friends.php?user_id=$1&from=$2 break; 
+  rewrite ^/members/(.*)/friends/$ /member_friends.php?user_id=$1 break; 
+  rewrite ^/members/(.*)/wall/([0-9]+)/$ /member_blog.php?user_id=$1&from=$2 break; 
+  rewrite ^/members/(.*)/wall/$ /member_blog.php?user_id=$1 break; 
+  rewrite ^/members/(.*)/events/([0-9]+)/$ /member_events.php?user_id=$1&from=$2 break; 
+  rewrite ^/members/(.*)/events/$ /member_events.php?user_id=$1 break; 
+  rewrite ^/members/list/search/([0-9]+)/$ /members_list.php?from=$1 break; 
+  rewrite ^/members/list/online/([0-9]+)/$ /members_list.php?show_only_online=1&from=$1 break; 
+  rewrite ^/members/list/girls/([0-9]+)/$ /members_list.php?gender_id=2&from=$1 break; 
+  rewrite ^/members/list/guys/([0-9]+)/$ /members_list.php?gender_id=1&from=$1 break; 
+  rewrite ^/members/list/([0-9]+)/$ /members_list.php?from=$1 break; 
+  rewrite ^/members/([0-9]+)/$ /member_profile_view.php?user_id=$1 break;
+  rewrite ^/members/list/search/(.*)$ /members_list.php break;
+  rewrite ^/members/list/online/(.*)$ /members_list.php?show_only_online=1 break;
+  rewrite ^/members/list/girls/(.*)$ /members_list.php?gender_id=2 break;
+  rewrite ^/members/list/guys/(.*)$ /members_list.php?gender_id=1 break;
+  rewrite ^/members/list/(.*)$ /members_list.php break;
+
+  rewrite ^/my_profile_edit/?action=(.*)$ /member_my_profile_edit.php?action=$1 break; 
+  rewrite ^/my_profile_edit/(.*)$ /member_my_profile_edit.php break;
+
+  rewrite ^/my_favourite_videos/([0-9]+)/$ /member_my_fav_videos.php?from=$1 break;
+  rewrite ^/my_favourite_videos/(.*)$ /member_my_fav_videos.php break;
+
+  rewrite ^/my_uploaded_videos/([0-9]+)/$ /member_my_uploaded_videos.php?from=$1 break;
+  rewrite ^/my_uploaded_videos/(.*)$ /member_my_uploaded_videos.php break;
+
+  rewrite ^/my_video_upload/(.*)$ /member_my_video_edit.php break;
+
+  rewrite ^/my_video_edit/(.*)/$ /member_my_video_edit.php?action=change&video_id=$1 break;
+
+  rewrite ^/my_favourite_albums/([0-9]+)/$ /member_my_fav_albums.php?from=$1 break;
+  rewrite ^/my_favourite_albums/(.*)$ /member_my_fav_albums.php break;
+
+  rewrite ^/my_uploaded_albums/([0-9]+)/$ /member_my_uploaded_albums.php?from=$1 break;
+  rewrite ^/my_uploaded_albums/(.*)$ /member_my_uploaded_albums.php break;
+
+  rewrite ^/my_friends/([0-9]+)/$ /member_my_friends.php?from=$1 break; 
+  rewrite ^/my_friends/(.*)$ /member_my_friends.php break;
+
+  rewrite ^/my_messages/message/(.*)/$ /member_my_message_details.php?message_id=$1 break; 
+  rewrite ^/my_messages/(.*)/conversation/([0-9]+)/$ /member_my_messages.php?user_id=$1&from=$2 break; 
+  rewrite ^/my_messages/(.*)/conversation/$ /member_my_messages.php?user_id=$1 break; 
+  rewrite ^/my_messages/(.*)/([0-9]+)/$ /member_my_messages.php?folder=$1&from=$2 break; 
+  rewrite ^/my_messages/(.*)/$ /member_my_messages.php?folder=$1 break; 
+
+  rewrite ^/my_wall/([0-9]+)/$ /member_my_blog.php?from=$1 break; 
+  rewrite ^/my_wall/(.*)$ /member_my_blog.php break;
+
+  rewrite ^/my_friends_events/([0-9]+)/$ /member_my_friends_events.php?from=$1 break; 
+  rewrite ^/my_friends_events/(.*)$ /member_my_friends_events.php break;
+
+  rewrite ^/my_album_upload/(.*)$ /member_my_album_edit.php break;
+
+  rewrite ^/my_album_edit/(.*)/$ /member_my_album_edit.php?action=change&album_id=$1 break;
+
+  rewrite ^/cs/(.*)/.*$ /redirect_cs.php?dir=$1 break; 
+
+  rewrite ^/random_video(/)?$ /redirect_random_video.php break;
+
+  rewrite ^/random_album(/)?$ /redirect_random_album.php break;
+  rewrite ^/albums/tags/(.*)/latest/([0-9]+)/$ /albums_list.php?tag=$1&from=$2 break; 
+  rewrite ^/albums/tags/(.*)/latest/$ /albums_list.php?tag=$1 break; 
+  rewrite ^/albums/tags/(.*)/watched-now/([0-9]+)/$ /albums_list.php?tag=$1&sort_by=last_time_view_date&from=$2 break; 
+  rewrite ^/albums/tags/(.*)/watched-now/$ /albums_list.php?tag=$1&sort_by=last_time_view_date break; 
+  rewrite ^/albums/tags/(.*)/random/([0-9]+)/$ /albums_list.php?tag=$1&sort_by=pseudo_rand&from=$2 break; 
+  rewrite ^/albums/tags/(.*)/random/$ /albums_list.php?tag=$1&sort_by=pseudo_rand break; 
+  rewrite ^/albums/tags/(.*)/most_commented/([0-9]+)/$ /albums_list.php?tag=$1&sort_by=most_commented&from=$2 break; 
+  rewrite ^/albums/tags/(.*)/most_commented/$ /albums_list.php?tag=$1&sort_by=most_commented break; 
+  rewrite ^/albums/tags/(.*)/most_favourited/([0-9]+)/$ /albums_list.php?tag=$1&sort_by=most_favourited&from=$2 break; 
+  rewrite ^/albums/tags/(.*)/most_favourited/$ /albums_list.php?tag=$1&sort_by=most_favourited break; 
+  rewrite ^/albums/tags/(.*)/latest/([0-9]+)/$ /albums_list.php?tag=$1&from=$2 break; 
+  rewrite ^/albums/tags/(.*)/latest/$ /albums_list.php?tag=$1 break; 
+  rewrite ^/albums/tags/(.*)/top-rated/([0-9]+)/$ /albums_list.php?tag=$1&sort_by=rating&from=$2 break; 
+  rewrite ^/albums/tags/(.*)/top-rated/$ /albums_list.php?tag=$1&sort_by=rating break; 
+  rewrite ^/albums/tags/(.*)/most-popular/([0-9]+)/$ /albums_list.php?tag=$1&sort_by=album_viewed&from=$2 break; 
+  rewrite ^/albums/tags/(.*)/most-popular/$ /albums_list.php?tag=$1&sort_by=album_viewed break; 
+  rewrite ^/albums/tags/(.*)/longest/([0-9]+)/$ /albums_list.php?tag=$1&sort_by=duration&from=$2 break; 
+  rewrite ^/albums/tags/(.*)/longest/$ /albums_list.php?tag=$1&sort_by=duration break; 
+  rewrite ^/albums/tags/(.*)/([0-9]+)/$ /albums_list.php?tag=$1&from=$2 break; 
+  rewrite ^/albums/tags/(.*)/$ /albums_list.php?tag=$1 break; 
+  rewrite ^/albums/models/(.*)/latest/([0-9]+)/$ /albums_list.php?model=$1&from=$2 break; 
+  rewrite ^/albums/models/(.*)/latest/$ /albums_list.php?model=$1 break; 
+  rewrite ^/albums/models/(.*)/watched-now/([0-9]+)/$ /albums_list.php?model=$1&sort_by=last_time_view_date&from=$2 break; 
+  rewrite ^/albums/models/(.*)/watched-now/$ /albums_list.php?model=$1&sort_by=last_time_view_date break; 
+  rewrite ^/albums/models/(.*)/random/([0-9]+)/$ /albums_list.php?model=$1&sort_by=pseudo_rand&from=$2 break; 
+  rewrite ^/albums/models/(.*)/random/$ /albums_list.php?model=$1&sort_by=pseudo_rand break; 
+  rewrite ^/albums/models/(.*)/most_commented/([0-9]+)/$ /albums_list.php?model=$1&sort_by=most_commented&from=$2 break; 
+  rewrite ^/albums/models/(.*)/most_commented/$ /albums_list.php?model=$1&sort_by=most_commented break; 
+  rewrite ^/albums/models/(.*)/most_favourited/([0-9]+)/$ /albums_list.php?model=$1&sort_by=most_favourited&from=$2 break; 
+  rewrite ^/albums/models/(.*)/most_favourited/$ /albums_list.php?model=$1&sort_by=most_favourited break; 
+  rewrite ^/albums/models/(.*)/latest/([0-9]+)/$ /albums_list.php?model=$1&from=$2 break; 
+  rewrite ^/albums/models/(.*)/latest/$ /albums_list.php?model=$1 break; 
+  rewrite ^/albums/models/(.*)/top-rated/([0-9]+)/$ /albums_list.php?model=$1&sort_by=rating&from=$2 break; 
+  rewrite ^/albums/models/(.*)/top-rated/$ /albums_list.php?model=$1&sort_by=rating break; 
+  rewrite ^/albums/models/(.*)/most-popular/([0-9]+)/$ /albums_list.php?model=$1&sort_by=album_viewed&from=$2 break; 
+  rewrite ^/albums/models/(.*)/most-popular/$ /albums_list.php?model=$1&sort_by=album_viewed break; 
+  rewrite ^/albums/models/(.*)/longest/([0-9]+)/$ /albums_list.php?model=$1&sort_by=duration&from=$2 break; 
+  rewrite ^/albums/models/(.*)/longest/$ /albums_list.php?model=$1&sort_by=duration break; 
+  rewrite ^/albums/models/(.*)/([0-9]+)/$ /albums_list.php?model=$1&from=$2 break; 
+  rewrite ^/albums/models/(.*)/$ /albums_list.php?model=$1 break; 
+  rewrite ^/albums/channels/(.*)/latest/([0-9]+)/$ /albums_list.php?channel=$1&from=$2 break; 
+  rewrite ^/albums/channels/(.*)/latest/$ /albums_list.php?channel=$1 break; 
+  rewrite ^/albums/channels/(.*)/watched-now/([0-9]+)/$ /albums_list.php?channel=$1&sort_by=last_time_view_date&from=$2 break; 
+  rewrite ^/albums/channels/(.*)/watched-now/$ /albums_list.php?channel=$1&sort_by=last_time_view_date break; 
+  rewrite ^/albums/channels/(.*)/random/([0-9]+)/$ /albums_list.php?channel=$1&sort_by=pseudo_rand&from=$2 break; 
+  rewrite ^/albums/channels/(.*)/random/$ /albums_list.php?channel=$1&sort_by=pseudo_rand break; 
+  rewrite ^/albums/channels/(.*)/most_commented/([0-9]+)/$ /albums_list.php?channel=$1&sort_by=most_commented&from=$2 break; 
+  rewrite ^/albums/channels/(.*)/most_commented/$ /albums_list.php?channel=$1&sort_by=most_commented break; 
+  rewrite ^/albums/channels/(.*)/most_favourited/([0-9]+)/$ /albums_list.php?channel=$1&sort_by=most_favourited&from=$2 break; 
+  rewrite ^/albums/channels/(.*)/most_favourited/$ /albums_list.php?channel=$1&sort_by=most_favourited break; 
+  rewrite ^/albums/channels/(.*)/latest/([0-9]+)/$ /albums_list.php?channel=$1&from=$2 break; 
+  rewrite ^/albums/channels/(.*)/latest/$ /albums_list.php?channel=$1 break; 
+  rewrite ^/albums/channels/(.*)/top-rated/([0-9]+)/$ /albums_list.php?channel=$1&sort_by=rating&from=$2 break; 
+  rewrite ^/albums/channels/(.*)/top-rated/$ /albums_list.php?channel=$1&sort_by=rating break; 
+  rewrite ^/albums/channels/(.*)/most-popular/([0-9]+)/$ /albums_list.php?channel=$1&sort_by=album_viewed&from=$2 break; 
+  rewrite ^/albums/channels/(.*)/most-popular/$ /albums_list.php?channel=$1&sort_by=album_viewed break; 
+  rewrite ^/albums/channels/(.*)/longest/([0-9]+)/$ /albums_list.php?channel=$1&sort_by=duration&from=$2 break; 
+  rewrite ^/albums/channels/(.*)/longest/$ /albums_list.php?channel=$1&sort_by=duration break; 
+  rewrite ^/albums/channels/(.*)/([0-9]+)/$ /albums_list.php?channel=$1&from=$2 break; 
+  rewrite ^/albums/channels/(.*)/$ /albums_list.php?channel=$1 break; 
+  rewrite ^/albums/watched-now/([0-9]+)/$ /albums_list.php?sort_by=last_time_view_date&from=$1 break; 
+  rewrite ^/albums/watched-now/$ /albums_list.php?sort_by=last_time_view_date break; 
+  rewrite ^/albums/most_favourited/([0-9]+)/$ /albums_list.php?sort_by=most_favourited&from=$1 break; 
+  rewrite ^/albums/most_commented/([0-9]+)/$ /albums_list.php?sort_by=most_commented&from=$1 break; 
+  rewrite ^/albums/random/([0-9]+)/$ /albums_list.php?sort_by=pseudo_rand&from=$1 break; 
+  rewrite ^/albums/latest/([0-9]+)/$ /albums_list.php?from=$1 break; 
+  rewrite ^/albums/most-popular/month/([0-9]+)/$ /albums_list.php?sort_by=album_viewed_month&from=$1 break; 
+  rewrite ^/albums/most-popular/month/$ /albums_list.php?sort_by=album_viewed_month break; 
+  rewrite ^/albums/most-popular/week/([0-9]+)/$ /albums_list.php?sort_by=album_viewed_week&from=$1 break; 
+  rewrite ^/albums/most-popular/week/$ /albums_list.php?sort_by=album_viewed_week break; 
+  rewrite ^/albums/most-popular/today/([0-9]+)/$ /albums_list.php?sort_by=album_viewed_today&from=$1 break; 
+  rewrite ^/albums/most-popular/today/$ /albums_list.php?sort_by=album_viewed_today break; 
+  rewrite ^/albums/most-popular/([0-9]+)/$ /albums_list.php?sort_by=album_viewed&from=$1 break; 
+  rewrite ^/albums/most-popular/$ /albums_list.php?sort_by=album_viewed break; 
+  rewrite ^/albums/top-rated/month/([0-9]+)/$ /albums_list.php?sort_by=rating_month&from=$1 break; 
+  rewrite ^/albums/top-rated/month/$ /albums_list.php?sort_by=rating_month break; 
+  rewrite ^/albums/top-rated/week/([0-9]+)/$ /albums_list.php?sort_by=rating_week&from=$1 break; 
+  rewrite ^/albums/top-rated/week/$ /albums_list.php?sort_by=rating_week break; 
+  rewrite ^/albums/top-rated/today/([0-9]+)/$ /albums_list.php?sort_by=rating_today&from=$1 break; 
+  rewrite ^/albums/top-rated/today/$ /albums_list.php?sort_by=rating_today break; 
+  rewrite ^/albums/top-rated/([0-9]+)/$ /albums_list.php?sort_by=rating&from=$1 break; 
+  rewrite ^/albums/top-rated/$ /albums_list.php?sort_by=rating break; 
+  rewrite ^/albums/private/([0-9]+)/$ /albums_list.php?is_private=1&from=$1 break; 
+  rewrite ^/albums/tags/(.*)/([0-9]+)/$ /albums_list.php?tag=$1&from=$2 break; 
+  rewrite ^/albums/tags/(.*)/$ /albums_list.php?tag=$1 break; 
+  rewrite ^/albums/search/([0-9]+)/$ /albums_list.php?from=$1 break; 
+  rewrite ^/albums/categories/(.*)/latest/([0-9]+)/$ /albums_list.php?category=$1&from=$2 break; 
+  rewrite ^/albums/categories/(.*)/latest/$ /albums_list.php?category=$1 break; 
+  rewrite ^/albums/categories/(.*)/watched-now/([0-9]+)/$ /albums_list.php?category=$1&sort_by=last_time_view_date&from=$2 break; 
+  rewrite ^/albums/categories/(.*)/watched-now/$ /albums_list.php?category=$1&sort_by=last_time_view_date break; 
+  rewrite ^/albums/categories/(.*)/random/([0-9]+)/$ /albums_list.php?category=$1&sort_by=pseudo_rand&from=$2 break; 
+  rewrite ^/albums/categories/(.*)/random/$ /albums_list.php?category=$1&sort_by=pseudo_rand break; 
+  rewrite ^/albums/categories/(.*)/most_commented/([0-9]+)/$ /albums_list.php?category=$1&sort_by=most_commented&from=$2 break; 
+  rewrite ^/albums/categories/(.*)/most_commented/$ /albums_list.php?category=$1&sort_by=most_commented break; 
+  rewrite ^/albums/categories/(.*)/most_favourited/([0-9]+)/$ /albums_list.php?category=$1&sort_by=most_favourited&from=$2 break; 
+  rewrite ^/albums/categories/(.*)/most_favourited/$ /albums_list.php?category=$1&sort_by=most_favourited break; 
+  rewrite ^/albums/categories/(.*)/top-rated/([0-9]+)/$ /albums_list.php?category=$1&sort_by=rating&from=$2 break; 
+  rewrite ^/albums/categories/(.*)/top-rated/$ /albums_list.php?category=$1&sort_by=rating break; 
+  rewrite ^/albums/categories/(.*)/most-popular/([0-9]+)/$ /albums_list.php?category=$1&sort_by=album_viewed&from=$2 break; 
+  rewrite ^/albums/categories/(.*)/most-popular/$ /albums_list.php?category=$1&sort_by=album_viewed break; 
+  rewrite ^/albums/categories/(.*)/([0-9]+)/$ /albums_list.php?category=$1&from=$2 break; 
+  rewrite ^/albums/categories/(.*)/$ /albums_list.php?category=$1 break; 
+  rewrite ^/albums/([0-9]+)/$ /albums_list.php?from=$1 break; 
+  rewrite ^/albums/([0-9]+)/([^/]+)/([0-9]+)/$ /view_album.php?id=$1&dir=$2&from=$3 break; 
+  rewrite ^/albums/([0-9]+)/([^/]+)/$ /view_album.php?id=$1&dir=$2 break; 
+  rewrite ^/albums/([0-9]+)/([^/]+)/image([0-9]+)/([0-9]+)/$ /view_album.php?id=$1&dir=$2&image_id=$3&from=$4 break; 
+  rewrite ^/albums/([0-9]+)/([^/]+)/image([0-9]+)/$ /view_album.php?id=$1&dir=$2&image_id=$3 break;
+
+  rewrite ^/albums/most_favourited/(.*)$ /albums_list.php?sort_by=most_favourited break;
+  rewrite ^/albums/most_commented/(.*)$ /albums_list.php?sort_by=most_commented break;
+  rewrite ^/albums/random/(.*)$ /albums_list.php?sort_by=pseudo_rand break;
+
+  rewrite ^/albums/latest/(.*)$ /albums_list.php break;
+  rewrite ^/albums/private/(.*)$ /albums_list.php?is_private=1 break;
+  rewrite ^/albums/search/(.*)$ /albums_list.php break;
+  rewrite ^/albums/(.*)$ /albums_list.php break;
+  rewrite ^/embed/(.+)$ /player/iframe_embed.php?video_id=$1 break;
+
+  rewrite ^/related_videos_xml/([0-9]+)/?$ /related_videos_xml.php?video_id=$1 break;
+
+  rewrite ^/get_file/([0-9]+)/([^/]*)/(.*)$ /get_file.php?sg_id=$1&hash=$2&file=$3 break;
+  rewrite ^/get_image/([0-9]+)/([^/]*)/(.*)/$ /get_image.php?sg_id=$1&hash=$2&file=$3 break;
+  rewrite ^/mobile/tags/(.*)/([0-9]+)/$ /videos_list_mobile.php?tag=$1&from=$2 break;
+  rewrite ^/mobile/tags/(.*)/$ /videos_list_mobile.php?tag=$1 break; 
+  rewrite ^/mobile/categories/(.*)/([0-9]+)/$ /videos_list_mobile.php?category=$1&from=$2 break; 
+  rewrite ^/mobile/categories/(.*)/$ /videos_list_mobile.php?category=$1 break; 
+  rewrite ^/mobile/categories/(.*)$ /categories_mobile.php break; 
+  rewrite ^/mobile/popular/month/([0-9]+)/$ /videos_list_mobile.php?sort_by=video_viewed_month&from=$1 break; 
+  rewrite ^/mobile/popular/week/([0-9]+)/$ /videos_list_mobile.php?sort_by=video_viewed_week&from=$1 break; 
+  rewrite ^/mobile/popular/today/([0-9]+)/$ /videos_list_mobile.php?sort_by=video_viewed_today&from=$1 break; 
+  rewrite ^/mobile/popular/([0-9]+)/$ /videos_list_mobile.php?sort_by=video_viewed&from=$1 break; 
+  rewrite ^/mobile/search/([0-9]+)/$ /videos_list_mobile.php?from=$1 break; 
+  rewrite ^/mobile/([0-9]+)/$ /index_mobile.php?from=$1 break; 
+  rewrite ^/mobile/videos/([0-9]+)/([^/]+)/$ /mobile_view_video.php?id=$1&dir=$2 break;
+  rewrite ^/mobile/popular/month/(.*)$ /videos_list_mobile.php?sort_by=video_viewed_month break;
+  rewrite ^/mobile/popular/week/(.*)$ /videos_list_mobile.php?sort_by=video_viewed_week break;
+  rewrite ^/mobile/popular/today/(.*)$ /videos_list_mobile.php?sort_by=video_viewed_today break;
+  rewrite ^/mobile/search/(.*)$ /videos_list_mobile.php break;
+  rewrite ^/mobile/popular/(.*)? /videos_list_mobile.php?sort_by=video_viewed break;
+  rewrite ^/mobile/(.*)$ /index_mobile.php break;

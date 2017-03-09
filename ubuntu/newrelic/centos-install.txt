@@ -1,0 +1,8 @@
+rpm -Uvh https://download.newrelic.com/pub/newrelic/el5/i386/newrelic-repo-5-3.noarch.rpm
+yum install newrelic-sysmond -y
+echo "" > /etc/newrelic/nrsysmond.cfg
+
+
+nano /etc/newrelic/nrsysmond.cfg
+
+

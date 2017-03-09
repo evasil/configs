@@ -1,0 +1,3 @@
+check device rootfs with path /
+    if SPACE usage > 95% then alert
+    if inode usage > 95% then alert

@@ -1,0 +1,59 @@
+index index.php;
+
+location / {
+    try_files $uri $uri/ /index.php?$args;
+    }
+
+
+location /par/ {
+    fastcgi_buffering off;
+    allow all;
+    break;
+    }
+
+location ~ .php$ {
+
+#set $no_cache 0;
+#if ($request_uri ~* "/admin" ) {set $no_cache 1;}
+
+#limit_req       zone=phpsafety  burst=3;
+
+try_files $uri /index.php;
+
+fastcgi_pass   unix:/var/run/php-kvs1.sock;
+
+
+fastcgi_index  index.php;
+
+fastcgi_intercept_errors on; # только на период тестирования
+
+include fastcgi_params;
+
+fastcgi_param       SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            client_body_buffer_size    256k;
+	    fastcgi_ignore_client_abort     on;
+            fastcgi_connect_timeout      90;
+            fastcgi_send_timeout         900;
+            fastcgi_read_timeout         900;
+            fastcgi_buffer_size         256k;
+            fastcgi_buffers              8 256k;
+            fastcgi_busy_buffers_size    256k;
+            fastcgi_temp_file_write_size 256k;
+
+
+
+client_max_body_size 2G;
+
+# Caching FastCGI, can be disabled if required.
+
+include templates/kvs-cgi-cache;
+
+track_uploads uploads 3s;
+}
+
+
+
+location ^~ /admin/include/get_upload_status.php$ {
+#   upload_progress_java_output;
+   report_uploads uploads;
+}

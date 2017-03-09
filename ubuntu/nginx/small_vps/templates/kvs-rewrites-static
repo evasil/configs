@@ -1,0 +1,22 @@
+
+## Testing rewrites
+
+rewrite_log off;
+
+
+
+# Thumbs rewrites for Admin
+if ($args) { rewrite ^/tv\/(.*)$ /contents/videos_screenshots/$1 last; }
+
+# Preview thumbs for XML
+rewrite ^/tv\/([0-9]+)\/([0-9]+)\/thumbnail\.jpg(.*)?$ /contents/videos_screenshots/$1/$2/preview.jpg last;
+
+# Face thumbs rewrites
+rewrite ^/tv/small/([0-9]+)-([0-9]+)-([0-9]+)\.jpg(.*)?$ /contents/videos_screenshots/$1/$2/384x216/$3.jpg last;
+
+# Poster rewrite
+rewrite ^/tv/([0-9]+)/([0-9]+)-poster-([0-9]+)\.jpg(.*)$ /contents/videos_screenshots/$1/$2/726x409/$3.jpg last;
+
+# Sponsor banner
+rewrite ^/bos\/(.*)? /contents/content_sources/$1 last;
+

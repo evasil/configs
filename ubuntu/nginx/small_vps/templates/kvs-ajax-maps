@@ -1,0 +1,16 @@
+map $http_x_requested_with $ajaxed {
+    default 0;
+    XMLHttpRequest 1;
+}
+
+map $http_referer $myref {
+    default	0;
+    "~kvs-site.click"	1;
+}
+
+map $args $myarg {
+    default	0;
+    "~mode"		1;
+    "~vx"		1;
+}
+

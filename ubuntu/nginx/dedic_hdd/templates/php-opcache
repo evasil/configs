@@ -1,0 +1,36 @@
+index index.php;
+
+location / {
+    try_files $uri $uri/ /index.php?$args;
+    auth_basic           "closed site";
+    auth_basic_user_file security/opcache_pass;
+    }
+
+
+location ~ .php$ {
+try_files $uri /index.php;
+
+fastcgi_pass   unix:/var/run/php-opcache.sock;
+
+
+fastcgi_index  index.php;
+
+fastcgi_intercept_errors on; # только на период тестирования
+
+include fastcgi_params;
+
+fastcgi_param       SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            client_body_buffer_size    128k;
+	    fastcgi_ignore_client_abort     off;
+            fastcgi_connect_timeout      90;
+            fastcgi_send_timeout         900;
+            fastcgi_read_timeout         900;
+            fastcgi_buffer_size          4k;
+            fastcgi_buffers              4 64k;
+            fastcgi_busy_buffers_size    128k;
+            fastcgi_temp_file_write_size 128k;
+
+}
+
+
+

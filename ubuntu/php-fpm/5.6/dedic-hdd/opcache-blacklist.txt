@@ -1,0 +1,2 @@
+/srv/www/kvs-site.com/admin/*
+

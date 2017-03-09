@@ -1,0 +1,17 @@
+ check process nginx with pidfile /var/run/nginx.pid
+   group www
+   group nginx
+   start program = "/bin/systemctl start nginx"
+   stop program = "/bin/systemctl stop nginx"
+   if failed host 127.0.0.1 port 80 protocol http then alert
+    if cpu > 70% for 2 cycles then alert
+    if cpu > 98% for 5 cycles then restart
+    if memory > 98% for 6 cycles then restart
+  if 5 restarts with 5 cycles then timeout
+   depend nginx_bin
+
+
+ check file nginx_bin with path /usr/sbin/nginx
+   group nginx
+   include /etc/monit/templates/rootbin
+

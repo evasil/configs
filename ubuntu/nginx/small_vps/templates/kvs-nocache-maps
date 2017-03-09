@@ -1,0 +1,8 @@
+map $request_uri $no_cache {
+    ~/(admin|send)/	1;
+    ~/r/admin/		1;
+    ~tmp		1;
+    in.php		1;
+    default		0;
+}
+

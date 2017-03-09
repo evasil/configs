@@ -1,0 +1,6 @@
+
+if ( $http_user_agent ~* (nmap|nikto|wikto|sf|sqlmap|bsqlbf|w3af|acunetix|havij|appscan) ) {
+    return 444;
+}
+
+

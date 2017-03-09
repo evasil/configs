@@ -1,0 +1,108 @@
+
+# Block stupid user-agents (port scanners, etc)
+
+if ( $http_user_agent ~* (nmap|nikto|wikto|sf|sqlmap|bsqlbf|w3af|acunetix|havij|appscan) ) {
+    return 444;
+}
+
+
+location /nginx_stub_status {
+        stub_status on;
+      }
+
+
+location ~ /\.ht {
+deny all;
+}
+
+# Browser static files caching
+
+
+location ~* ^.+\.(jpg|jpeg|gif|png|css|js|ico|xml|rss|txt)$ {
+  expires 14d;
+  access_log off;
+  log_not_found off;
+  error_log /dev/null ;
+  add_header Cache-Control "public";
+  fastcgi_hide_header Set-Cookie;
+}
+
+location ~* \.(otf|eot|ttf|woff)$ {
+  expires 8d;
+    add_header Access-Control-Allow-Origin *;
+    log_not_found off;
+    fastcgi_hide_header Set-Cookie;
+}
+
+
+
+# KVS PART START
+
+# enable MP4 streaming and protect videos from direct access
+        location ~ /contents/videos/.*\.mp4 {
+            mp4;
+	    mp4_buffer_size 1m; # old 1m
+	    mp4_max_buffer_size 10m; # old 10m
+	    limit_conn perip 4; # old 4
+	    limit_req       zone=safety  burst=10;
+	    limit_rate_after 1m;
+	    limit_rate 256k;
+#	    set $limit_rate 512k; # old 512k
+	    open_file_cache off;
+            internal;
+	    aio off; # old threads
+	    directio 32m;
+	    output_buffers 1 4m;
+        }
+
+        # enable FLV streaming and protect videos from direct access
+        location ~ /contents/videos/.*\.flv {
+            flv;
+            limit_conn perip 3; # old 4
+            limit_req       zone=safety  burst=10;
+            limit_rate_after 2m;
+#           limit_rate 512k;
+            set $limit_rate 400k; # old 512k
+            open_file_cache off;
+            internal;
+            aio threads;
+            directio 1m;
+            output_buffers 1 9m;
+
+        }
+
+        # protect videos source folder from direct access
+        location ^~ /contents/videos_sources/ {
+        internal;
+        }
+
+        # protect direct access to album source folder, if it should not be available publiclyt
+        #location ^~ /contents/albums/sources/ {
+        #    root /var/www/localhost.com/public_html;
+        #    internal;
+        #}
+
+        # enable direct access protection for any album format, if it should not be available publicly
+        #location ^~ /contents/albums/main/700x525/ {
+        #    root /var/www/localhost.com/public_html;
+        #    internal;
+        #}
+
+
+	# Antihotlink (from default KVS config)
+#        location ~* \.(gif|jpg)$ {
+#            valid_referers none blocked mygoodsite.com www.mygoodsite.com ;
+#            if ($invalid_referer) {
+#                return   403;
+#            }
+#        }
+
+# KVS PART END
+
+
+location = /robots.txt {
+allow all;
+log_not_found off;
+access_log off;
+}
+

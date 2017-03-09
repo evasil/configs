@@ -1,0 +1,7 @@
+  check system cunty.click
+    if loadavg (1min) > 4 for 20 cycles then alert
+    if loadavg (5min) > 2 for 20 cycles then alert
+    if cpu usage > 98% for 20 cycles then alert
+    if memory usage > 95% then alert
+    if swap usage > 99% then alert
+

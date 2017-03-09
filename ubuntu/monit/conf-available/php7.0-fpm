@@ -1,0 +1,9 @@
+check process php7.0-fpm with pidfile /var/run/php/php7.0-fpm.pid
+  group www-data #change accordingly
+  start program = "/bin/systemctl start php7.0-fpm"
+  stop program  = "/bin/systemctl stop php7.0-fpm"
+  if failed unixsocket /var/run/cunty-php7.sock then restart
+  if cpu > 70% for 2 cycles then alert
+  if cpu > 98% for 5 cycles then restart
+  if memory > 95% for 5 cycles then restart
+  if 3 restarts within 5 cycles then timeout

@@ -1,18 +1,3 @@
-#TEST
-
-
-   location /nginx_status {
-        # Turn on nginx stats
-        stub_status on;
-
-        # Security: Only allow access from 192.168.1.100 IP #
-	allow 203.143.70.29;
-	allow 110.174.175.90;
-   
-        # Send rest of the world to /dev/null #
-#        deny all;
-   }
-
 
 location ~* ^.+\.(html|js|css)$ {
     expires max;
@@ -23,6 +8,7 @@ location ~* ^.+\.(html|js|css)$ {
 
 location ~* ^.+\.(jpg|jpeg|gif|png|ico||svg|svgz|mp4|ogg|ogv|webm|htc|webp)$ {
 
+    # Tunable, depends on the load, traffic amount, etc
     aio on;
     directio 12k;
     output_buffers 8 512k;

@@ -7,20 +7,20 @@ pagespeed InPlaceResourceOptimization off;
 
 ##pagespeed FetchHttps enable;
 
-pagespeed FileCachePath "/var/run/nginx_pagespeed_tcms-site/";
+pagespeed FileCachePath "/var/run/nginx_pagespeed_tcms.domain.com/";
 pagespeed FileCacheSizeKb 16000;
 pagespeed FileCacheCleanIntervalMs   3600000;
 #pagespeed EnableFilters rewrite_domains;
 
-pagespeed Domain http://tcms-site.click;
-pagespeed Domain http://*tcms-site.click;
+pagespeed Domain http://tcms.domain.com;
+pagespeed Domain http://*tcms.domain.com;
 
 pagespeed Domain http://bnrs.it;
 pagespeed Domain http://istri.it;
 
 # Files location
-pagespeed LoadFromFile "http://tcms-site.click/" "/srv/www/tcms-site.click/";
-pagespeed LoadFromFile "http://*tcms-site.click/" "/srv/www/tcms-site.click/";
+pagespeed LoadFromFile "http://tcms.domain.com/" "/srv/www/tcms.domain.com/";
+pagespeed LoadFromFile "http://*tcms.domain.com/" "/srv/www/tcms.domain.com/";
 pagespeed LoadFromFileRuleMatch Disallow \.php$;
 
 #HTML rules

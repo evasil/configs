@@ -7,20 +7,20 @@ pagespeed InPlaceResourceOptimization off;
 
 ##pagespeed FetchHttps enable;
 
-pagespeed FileCachePath "/var/run/nginx_pagespeed_kvs-site/";
+pagespeed FileCachePath "/var/run/nginx_pagespeed_kvs.domain.com/";
 pagespeed FileCacheSizeKb 16000;
 pagespeed FileCacheCleanIntervalMs   3600000;
 #pagespeed EnableFilters rewrite_domains;
 
-pagespeed Domain http://kvs-site.click;
-pagespeed Domain http://*kvs-site.click;
+pagespeed Domain http://kvs.domain.com;
+pagespeed Domain http://*kvs.domain.com;
 
 pagespeed Domain http://bnrs.it;
 pagespeed Domain http://istri.it;
 
 # Files location
-pagespeed LoadFromFile "http://kvs-site.click/" "/srv/www/kvs-site.click/";
-pagespeed LoadFromFile "http://*kvs-site.click/" "/srv/www/kvs-site.click/";
+pagespeed LoadFromFile "http://kvs.domain.com/" "/srv/www/kvs.domain.com/";
+pagespeed LoadFromFile "http://*kvs.domain.com/" "/srv/www/kvs.domain.com/";
 pagespeed LoadFromFileRuleMatch Disallow \.php$;
 
 #HTML rules

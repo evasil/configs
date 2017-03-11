@@ -1,0 +1,4 @@
+# Ban countries, see nginx.conf for definition.
+if ($allowed_country = no) {
+      return 444;
+}

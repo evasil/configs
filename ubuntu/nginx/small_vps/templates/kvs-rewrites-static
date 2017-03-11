@@ -3,8 +3,6 @@
 
 rewrite_log off;
 
-
-
 # Thumbs rewrites for Admin
 if ($args) { rewrite ^/tv\/(.*)$ /contents/videos_screenshots/$1 last; }
 

@@ -1,0 +1,28 @@
+index index.php;
+
+
+# Common deny or internal locations, to help prevent access to not-public areas
+        location ~* wp-admin/includes { deny all; }
+        location ~* wp-includes/theme-compat/ { deny all; }
+        location ~* wp-includes/js/tinymce/langs/.*\.php { deny all; }
+	location ~* \.(css|js|ttf) { allow all; }
+        location /wp-content/ { internal; }
+        location /wp-includes/ { internal; }
+        location ~* wp-config.php { deny all; }
+
+# Prevent any potentially-executable files in the uploads directory from being executed
+        # by forcing their MIME type to text/plain
+        location ~* ^/wp-content/uploads/.*.(html|htm|shtml|php|js|swf)$ {
+            types { }
+            default_type text/plain;
+        }
+ 
+        # Rewrite rules for Wordpress SEO by Yoast
+        rewrite ^/sitemap_index\.xml$ /index.php?sitemap=1 last;
+        rewrite ^/([^/]+?)-sitemap([0-9]+)?\.xml$ /index.php?sitemap=$1&sitemap_n=$2 last;
+ 
+        # Add trailing slash to */wp-admin requests
+        rewrite /wp-admin$ $scheme://$host$uri/ permanent;
+ 
+        # Redirect 403 errors to 404 error to fool attackers
+        error_page 403 = 404;

@@ -1,0 +1,12 @@
+ check process smartd with pidfile /var/run/smartd.pid
+   group system
+   group smartd
+   start program = "/usr/sbin/service smartmontools start"
+   stop  program = "/usr/sbin/service smartmontools stop"
+   if 5 restarts with 5 cycles then timeout
+   depend smartd_bin
+
+ check file smartd_bin with path /usr/sbin/smartd
+   group smartd
+   include /etc/monit/templates/rootbin
+

@@ -1,6 +1,6 @@
 <?php 
   /**
-   * MyISAM to InnoDB migration script 
+   * MyISAM to InnoDB migration script for SmartCJ databases
    */
  
    if (!ini_get('display_errors')) {
@@ -8,7 +8,7 @@
   } 
   error_reporting(E_ALL); 
  
-   $connect = mysql_connect("localhost","root","ПАРОЛЬ_РУТА") 
+   $connect = mysql_connect("localhost","root","ROOT_PASSWORD") 
   or die("unable to connect to msql server: " . msql_error()); 
  
  mysql_select_db("ИМЯ_БАЗЫ", $connect) 

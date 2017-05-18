@@ -33,7 +33,10 @@ net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_rfc1337 = 1
 net.ipv4.ip_forward = 0
 net.ipv4.icmp_echo_ignore_broadcasts = 1
+
+# set to 1 to disable pings
 net.ipv4.icmp_echo_ignore_all = 0
+
 net.ipv4.icmp_ignore_bogus_error_responses = 1
 net.core.somaxconn = 65535
 net.core.netdev_max_backlog = 1000

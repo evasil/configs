@@ -1,0 +1,12 @@
+check program SDB_T with path "/etc/monit/scripts/sdb_temp.sh"
+    if status > 45 for 5 cycles then alert
+    group temperature
+
+check program SDC_T with path "/etc/monit/scripts/sdc_temp.sh"
+    if status > 45 for 5 cycles then alert
+    group temperature
+
+check program SDD_T with path "/etc/monit/scripts/sdd_temp.sh"
+    if status > 45 for 5 cycles then alert
+    group temperature
+

@@ -12,12 +12,12 @@
 # By default this script does nothing.
 
 
-# Create TMP location for PST KVS
+# Create TMP location for KVS
 
-if [ ! -d /var/run/pst-kvs-tmp ]; then
-  mkdir /var/run/pst-kvs-tmp
-  chown www-data:www-data /var/run/pst-kvs-tmp
-  chmod 777 /var/run/pst-kvs-tmp
+if [ ! -d /var/run/domain-kvs-tmp ]; then
+  mkdir /var/run/domain-kvs-tmp
+  chown www-data:www-data /var/run/domain-kvs-tmp
+  chmod 777 /var/run/domain-kvs-tmp
 fi
 
 # Increase temp
@@ -37,7 +37,7 @@ blockdev --setra 65536 /dev/md127
 # Outgoing port 80 traffic shaping to 285Mbps
 /etc/scripts/setlimit.sh 265
 
-# Rub IP ban script
+# Run IP ban script
 
 /root/ip_ban.sh >> /var/log/syslog
 

@@ -1,0 +1,4 @@
+## Example to collect MDADM RAID IOPS data, informational only!! Alerting if ONLY the iostat not working
+
+check program MD0.iops with path "/usr/bin/iostat -d -p md0 -m" with timeout 8 seconds
+if status !=0 then alert

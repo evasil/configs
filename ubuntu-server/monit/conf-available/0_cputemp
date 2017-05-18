@@ -1,0 +1,3 @@
+check program CPU_T with path "/etc/monit/scripts/cpu_temp.sh"
+    if status > 65 for 10 cycles then alert
+    group temperature

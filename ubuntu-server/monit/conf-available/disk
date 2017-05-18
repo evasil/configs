@@ -1,3 +1,22 @@
-check device rootfs with path /
-    if SPACE usage > 95% then alert
-    if inode usage > 95% then alert
+## Root FS on typical HDD
+
+check filesystem rootfs path /
+    if SPACE usage > 95% for 10 cycles   then alert
+    if inode usage > 95% for 10 cycles then alert
+    if read rate > 250 operations/s for 10 cycles then alert
+    if write rate > 250 operations/s for 10 cycles then alert
+    if read rate > 200 MB/s for 10 cycles then alert
+    if write rate > 200 MB/s for 10 cycles  then alert
+
+
+## Additional FS on fast RAID or SSD 
+# check filesystem datafs path /data
+#    if SPACE usage > 95% for 10 cycles then alert
+#    if inode usage > 95% for 10 cycles then alert
+#    if read rate > 1500 operations/s for 10 cycles  then alert
+#    if write rate > 1500 operations/s for 10 cycles  then alert
+#    if read rate > 300 MB/s for 10 cycles then alert
+#    if write rate > 300 MB/s for 10 cycles  then alert
+
+
+

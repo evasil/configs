@@ -1,3 +1,3 @@
 check program top10 with path "/usr/bin/top -n1 -b"
-   if status != 0 then alert
+   if status != 0 for 2 cycles then alert
 

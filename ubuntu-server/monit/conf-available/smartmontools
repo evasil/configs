@@ -10,3 +10,26 @@
    group smartd
    include /etc/monit/templates/rootbin
 
+#SMART Overall Health SDA
+check program sda-health with path "/etc/monit/scripts/smart.sh /dev/sda"
+    every 5 cycles
+    if status != 0 then alert
+    group health
+
+#SMART Overall Health SDB
+check program sdb-health with path "/etc/monit/scripts/smart.sh /dev/sdb"
+    every 5 cycles
+    if status != 0 then alert
+    group health
+
+#SMART Overall Health SDC
+check program sdc-health with path "/etc/monit/scripts/smart.sh /dev/sdc"
+    every 5 cycles
+    if status != 0 then alert
+    group health
+
+#SMART Overall Health SDD
+check program sdd-health with path "/etc/monit/scripts/smart.sh /dev/sdd"
+    every 5 cycles
+    if status != 0 then alert
+    group health

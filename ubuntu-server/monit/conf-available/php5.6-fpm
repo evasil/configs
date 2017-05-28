@@ -3,7 +3,7 @@ check process php5.6-fpm with pidfile /var/run/php/php5.6-fpm.pid
   start program = "/bin/systemctl start php5.6-fpm"
   stop program  = "/bin/systemctl stop php5.6-fpm"
   if failed unixsocket /var/run/cunty-php.sock then restart
-  if cpu > 70% for 2 cycles then alert
+  if cpu > 70% for 5 cycles then alert
   if cpu > 98% for 5 cycles then restart
   if memory > 95% for 5 cycles then restart
   if 3 restarts within 5 cycles then timeout

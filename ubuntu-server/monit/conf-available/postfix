@@ -5,9 +5,9 @@
    start program = "/bin/systemctl start postfix"
    stop  program = "/bin/systemctl stop postfix"
    if failed host localhost port 25 with protocol smtp for 2 times within 3 cycles then restart
-    if cpu > 70% for 2 cycles then alert
+    if cpu > 70% for 5 cycles then alert
     if cpu > 98% for 5 cycles then restart
-    if memory > 98% for 6 cycles then restart
+    if memory > 98% for 5 cycles then restart
    if 5 restarts with 5 cycles then timeout
    depend master_bin
    depend postfix_rc
@@ -22,17 +22,17 @@
 
  check file postdrop_bin with path /usr/sbin/postdrop
    group postfix
-   if failed checksum        then unmonitor
-   if failed permission 2555 then unmonitor
-   if failed uid root        then unmonitor
-   if failed gid postdrop    then unmonitor
+   if failed checksum        for 5 cycles then alert
+   if failed permission 2555 for 5 cycles then alert
+   if failed uid root        for 5 cycles then alert
+   if failed gid postdrop    for 5 cycles then alert
 
  check file postqueue_bin with path /usr/sbin/postqueue
    group postfix
-   if failed checksum        then unmonitor
-   if failed permission 2555 then unmonitor
-   if failed uid root        then unmonitor
-   if failed gid postdrop    then unmonitor
+   if failed checksum        for 5 cycles then alert
+   if failed permission 2555 for 5 cycles then alert
+   if failed uid root        for 5 cycles then alert
+   if failed gid postdrop    for 5 cycles then alert
 
  check file master_cf with path /etc/postfix/master.cf
    group postfix

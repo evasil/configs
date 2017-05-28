@@ -1,4 +1,4 @@
- if changed checksum      then alert
- if failed permission 644 then unmonitor
- if failed uid root       then unmonitor
- if failed gid root       then unmonitor
+ if changed checksum      for 3 cycles then alert
+ if failed permission 644 for 5 cycles then alert
+ if failed uid root       for 5 cycles then alert
+ if failed gid root       for 5 cycles then alert

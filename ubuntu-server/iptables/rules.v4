@@ -57,7 +57,7 @@ COMMIT
 -F
 -X
 
-
+## Double check NIC name!!!
 -A OUTPUT -o eth0 -p tcp --sport 80 -j MARK --set-mark 5
 
 COMMIT

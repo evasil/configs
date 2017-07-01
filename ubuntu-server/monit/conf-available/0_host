@@ -1,4 +1,4 @@
-  check system cunty.click
+  check system $HOST
     if loadavg (1min) > 4 for 10 cycles then alert
     if loadavg (5min) > 2 for 10 cycles then alert
     if cpu usage > 98% for 10 cycles then alert

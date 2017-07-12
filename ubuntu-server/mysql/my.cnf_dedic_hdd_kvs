@@ -14,6 +14,11 @@ bind-address = 127.0.0.1
 #skip-networking 
 skip-name-resolve=1
 
+
+### SQL-MODE is important for KVS and their stupid DB schemes!!
+sql-mode = ""
+
+
 explicit_defaults_for_timestamp = 1
 
 tmpdir = /var/mysqltmp

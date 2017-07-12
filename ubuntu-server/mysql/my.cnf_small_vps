@@ -27,6 +27,7 @@ pid-file                       = /var/run/mysqld/mysql.pid
 
 tmpdir = /var/run/mysqld
 
+# Important for KVS!!!
 sql-mode = ""
 
 # MyISAM #

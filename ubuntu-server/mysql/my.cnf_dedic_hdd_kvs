@@ -32,7 +32,8 @@ pid-file                       = /var/run/mysqld/mysqld.pid
 wait-timeout = 3600
 
 # MyISAM #
-key-buffer-size                = 32M
+key-buffer-size                = 32M # maybe increase to 64M after tests
+
 myisam-recover-options                 = FORCE,BACKUP
 
 # SAFETY #
@@ -43,26 +44,26 @@ max-connect-errors             = 1000000
 datadir                        = /srv/mysql/
 
 # CACHES AND LIMITS #
-join-buffer-size		= 32M
-tmp-table-size                 = 256M
-max-heap-table-size            = 256M
+join-buffer-size		= 32M # maybe increase to 64M after tests if using SmartCJ or TCMS
+tmp-table-size                 = 64M
+max-heap-table-size            = 64M
 query-cache-type               = 0
 query-cache-size               = 0
-max-connections                = 256
+max-connections                = 128 # Usually not needed to be higher
 thread-cache-size              = 50
 open-files-limit               = 65535
-table-definition-cache         = 4096
-table-open-cache               = 4096
+table-definition-cache         = 1024
+table-open-cache               = 1024 # Double check limits in systemd init script for MySQL
 
 # INNODB #
 ##innodb-flush-method            = O_DIRECT
 innodb-log-files-in-group      = 2
-innodb-log-file-size           = 256M
+innodb-log-file-size           = 512M
 innodb-flush-log-at-trx-commit = 2
 innodb-file-per-table          = 1
-innodb-buffer-pool-size        = 4G
-innodb-buffer-pool-instances	= 4
-innodb-log-buffer-size		= 32M 
+innodb-buffer-pool-size        = 4G # Equals innodb-log-file-size * innodb-log-files-in-group * 4
+innodb-buffer-pool-instances	= 2
+innodb-log-buffer-size		= 256M
 
 
 # LOGGING #

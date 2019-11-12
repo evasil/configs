@@ -6,7 +6,7 @@ TMPLDIR="/root/site-generator/tmpl"
 IPADDR=`hostname --ip-address`
 DEFILE="/opt/dehydrated/domains.txt"
 
-INPUT="$WORKDIR/dataset.txt"
+INPUT="$WORKDIR/dataset-scj-cf.txt"
 OLDIFS=$IFS
 IFS=','
 

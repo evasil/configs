@@ -1,0 +1,39 @@
+server {
+
+    set $cjdir '##CJDIR##';
+
+    include templates/ip4_1_443;
+
+    server_name ##DOMAIN##;
+
+    error_log   /var/log/nginx/##DOMAIN##.error.log;
+
+    root /srv/www/##DOMAIN##;
+
+    access_log off;
+    
+    ssl on;
+
+    ssl_certificate /opt/dehydrated/certs/##DOMAIN##/fullchain.pem;
+    ssl_certificate_key /opt/dehydrated/certs/##DOMAIN##/privkey.pem;
+    
+    ssl_stapling on;
+    ssl_stapling_verify on;
+    ssl_trusted_certificate /opt/dehydrated/certs/##DOMAIN##/chain.pem;
+    resolver 8.8.8.8 8.8.4.4;
+    resolver_timeout 3s;
+
+
+    include templates/0_le;
+
+    include templates/smartcj-security;
+
+    include templates/smartcj-static;
+
+    include templates/smartcj-php;
+
+    include templates/smartcj-rewrite;
+
+    include templates/smartcj-rewrite-##DOMAIN##;
+
+}  # close server

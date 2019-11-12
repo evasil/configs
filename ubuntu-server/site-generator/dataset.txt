@@ -1,0 +1,3 @@
+# testing
+# Format: DOMAIN,SCJ Direcotory,Popular Tag,Duration Tag,Search Tag,Movies Tag,Categories Tag
+domain.com,smartcj-dir,popular-tag,duration-tag,search-tag,movies-tag,categories-tag

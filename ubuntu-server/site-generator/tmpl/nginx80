@@ -1,0 +1,15 @@
+server {
+
+    include templates/ip4_1_80;
+
+    server_name ##DOMAIN##;
+
+    error_log	/var/log/nginx/##DOMAIN##.error.log;
+
+    ##return       301 https://##DOMAIN##$request_uri;
+
+    include templates/0_le;
+
+} #close server
+
+

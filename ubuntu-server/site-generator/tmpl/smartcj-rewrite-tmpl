@@ -1,0 +1,20 @@
+
+rewrite ^/##POPTAG##/([0-9]+)/$ /##CJDIR##/cgi/out.php?url=content&p=100&dont_count_in_trade=true&skip_sell=true&group_name=All&order=ctr&page=$1&$query_string break;
+rewrite ^/##POPTAG##/(.*)$ /##CJDIR##/cgi/out.php?url=content&p=100&dont_count_in_trade=true&skip_sell=true&group_name=All&order=ctr&page=1&$query_string break;
+
+rewrite ^/##DURTAG##/([0-9]+)/$ /##CJDIR##/cgi/out.php?url=content&p=100&dont_count_in_trade=true&skip_sell=true&group_name=All&order=duration&page=$1&$query_string break;
+rewrite ^/##DURTAG##/(.*)$ /##CJDIR##/cgi/out.php?url=content&p=100&dont_count_in_trade=true&skip_sell=true&group_name=All&order=duration&page=1&$query_string break;
+
+rewrite ^/##SEARCHTAG##/([^/]+)/([0-9]+)/$ /##CJDIR##/tube/index.php?search=$1&order=ctr&page=$2&$query_string;
+rewrite ^/##SEARCHTAG##/([^/]+)/$ /##CJDIR##/tube/index.php?search=$1&order=ctr&page=1&$query_string;
+
+rewrite ^/##MOVTAG##/([^/]+)/$ /##CJDIR##/cgi/out.php?url=content&slug=$1&force_template=tube_player&$query_string break;
+
+rewrite ^/##CATTAG##/([^/]+)/([0-9]+)/$ /##CJDIR##/cgi/out.php?url=content&p=100&dont_count_in_trade=true&skip_sell=true&group_name=$1&order=ctr&page=$2&$query_string break;
+rewrite ^/##CATTAG##/([^/]+)/$ /##CJDIR##/cgi/out.php?url=content&p=100&dont_count_in_trade=true&skip_sell=true&group_name=$1&order=ctr&page=1&$query_string break;
+rewrite ^/##CATTAG##/(.*)$ /##CJDIR##/cgi/out.php?url=content&p=100&dont_count_in_trade=true&skip_sell=true&force_template=categories&$query_string break;
+
+rewrite ^/sitemap.xml(.*)$ /##CJDIR##/tube/index.php?force_template=sitemap&skip_cache=true&$query_string break;
+rewrite ^/dmca(.*)$ /##CJDIR##/tube/index.php?force_template=dmca&skip_cache=true&$query_string break;
+rewrite ^/about_us/(.*)$ /##CJDIR##/tube/index.php?force_template=about_us&skip_cache=true&$query_string break;
+

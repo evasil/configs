@@ -8,8 +8,8 @@
 ### Scripts:
 * **generate-scj-cf.sh** - Script to generate pre-configured `SmartCJ` configs, domains are **proxied** via `CloudFlare` (so no A record is checking)
 
-### Data file:
-**dataset.txt** - CSV style text structured file. Quotes and special lines beginning with `domain.com`.
+### Data files:
+**dataset-scj-cf.txt** - CSV style text structured file. Quotes and special lines beginning with `domain.com`.
 `Tags` are for SEO rewrites. File structure with example:
 
 Domain|SmartCJ Directory|Popular Tag|Duration Tag|Movies Tag|Search Tag|Categories Tag

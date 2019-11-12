@@ -1,0 +1,11 @@
+if ($googlebotip = 0) {
+set $GoogleBAD A;
+}
+
+if ($http_user_agent ~* Googlebot) {
+set $GoogleBAD "${GoogleBAD}B";
+}
+
+if ($GoogleBAD = AB) {
+return 444;
+}

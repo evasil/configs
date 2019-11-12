@@ -1,0 +1,197 @@
+# nginx configuration
+# Default KVS 5.1.0
+
+error_page 404 /404.php;
+
+rewrite ^/terms(.*)$ /terms.php break;
+rewrite ^/dmca(.*)$ /dmca.php break;
+rewrite ^/2257(.*)$ /2257.php break;
+
+rewrite ^/search/([^/]+)/$ /search.php?q=$1 break;
+rewrite ^/search(.*)$ /search.php break;
+
+rewrite ^/link/([^/]+)/$ /redirect_cs.php?dir=$1 break;
+
+rewrite ^/random_video(/)?$ /redirect_random_video.php break;
+rewrite ^/random_album(/)?$ /redirect_random_album.php break;
+
+rewrite ^/news/([0-9]+)/$ /posts_list.php?post_type=news&from=$1 break;
+rewrite ^/news/([0-9]+)/([^/]+)/$ /view_post.php?id=$1&dir=$2 break;
+rewrite ^/news/([^/]+)/$ /view_post.php?dir=$1 break;
+rewrite ^/news(.*)$ /posts_list.php?post_type=news break;
+
+rewrite ^/latest-updates/([0-9]+)/$ /videos_list_latest.php?from=$1 break;
+rewrite ^/latest-updates/$ /videos_list_latest.php break;
+
+rewrite ^/top-rated/([0-9]+)/$ /videos_list.php?sort_by=rating&from=$1 break;
+rewrite ^/top-rated/$ /videos_list.php?sort_by=rating break;
+
+rewrite ^/most-popular/([0-9]+)/$ /videos_list.php?sort_by=video_viewed&from=$1 break;
+rewrite ^/most-popular/$ /videos_list.php?sort_by=video_viewed break;
+
+rewrite ^/categories/([0-9]+)/$ /categories_videos.php?from=$1 break;
+rewrite ^/categories/([^/]+)/([0-9]+)/$ /videos_list.php?category=$1&from=$2 break;
+rewrite ^/categories/([^/]+)/$ /videos_list.php?category=$1 break;
+rewrite ^/categories-selector/$ /index.php?mode=async&function=get_block&block_id=list_categories_categories_selector&global=true break;
+rewrite ^/categories(.*)$ /categories_videos.php break;
+
+rewrite ^/sites/([0-9]+)/$ /sponsors_videos.php?from=$1 break;
+rewrite ^/sites/([^/]+)/([0-9]+)/$ /videos_list.php?cs=$1&from=$2 break;
+rewrite ^/sites/([^/]+)/$ /videos_list.php?cs=$1 break;
+rewrite ^/sites(.*)$ /sponsors_videos.php break;
+
+rewrite ^/models/([0-9]+)/$ /models_videos.php?from=$1 break;
+rewrite ^/models/([^/]+)/([0-9]+)/$ /videos_list.php?model=$1&from=$2 break;
+rewrite ^/models/([^/]+)/$ /videos_list.php?model=$1 break;
+rewrite ^/models-selector/$ /index.php?mode=async&function=get_block&block_id=list_models_models_selector&global=true break;
+rewrite ^/models(.*)$ /models_videos.php break;
+
+rewrite ^/tags/([^/]+)/([0-9]+)/$ /videos_list.php?tag=$1&from=$2 break;
+rewrite ^/tags/([^/]+)/$ /videos_list.php?tag=$1 break;
+rewrite ^/tags(.*)$ /tags_videos.php break;
+
+rewrite ^/channels/([0-9]+)/$ /channels.php?from=$1 break;
+rewrite ^/channels/([^/]+)/([0-9]+)/$ /videos_list.php?dvd=$1&from=$2 break;
+rewrite ^/channels/([^/]+)/$ /videos_list.php?dvd=$1 break;
+rewrite ^/channels(.*)$ /channels.php break;
+
+
+rewrite ^/private/([0-9]+)/$ /videos_list.php?is_private=1&from=$1 break;
+rewrite ^/private(.*)$ /videos_list.php?is_private=1 break;
+
+rewrite ^/premium/([0-9]+)/$ /videos_list.php?is_private=2&from=$1 break;
+rewrite ^/premium(.*)$ /videos_list.php?is_private=2 break;
+
+rewrite ^/rss/tags/([^/]+)/$ /rss_videos.php?tag=$1 break;
+rewrite ^/rss/categories/([^/]+)/$ /rss_videos.php?category=$1 break;
+rewrite ^/rss/models/([^/]+)/$ /rss_videos.php?model=$1 break;
+rewrite ^/rss/sites/([^/]+)/$ /rss_videos.php?cs=$1 break;
+rewrite ^/rss/channels/([^/]+)/$ /rss_videos.php?dvd=$1 break;
+rewrite ^/rss/private(.*)$ /rss_videos.php?is_private=1 break;
+rewrite ^/rss/premium(.*)$ /rss_videos.php?is_private=2 break;
+rewrite ^/rss(.*)$ /rss_videos.php break;
+
+
+rewrite ^/videos/([0-9]+)/([^/]+)/$ /view_video.php?id=$1&dir=$2 break;
+rewrite ^/videos/([^/]+)/$ /view_video.php?dir=$1 break;
+
+rewrite ^/albums/([0-9]+)/$ /albums_list.php?from=$1 break;
+rewrite ^/albums/top-rated/([0-9]+)/$ /albums_list.php?sort_by=rating&from=$1 break;
+rewrite ^/albums/top-rated/$ /albums_list.php?sort_by=rating break;
+rewrite ^/albums/most-popular/([0-9]+)/$ /albums_list.php?sort_by=album_viewed&from=$1 break;
+rewrite ^/albums/most-popular/$ /albums_list.php?sort_by=album_viewed break;
+rewrite ^/albums/categories/([0-9]+)/$ /categories_albums.php?from=$1 break;
+rewrite ^/albums/categories/([^/]+)/([0-9]+)/$ /albums_list.php?category=$1&from=$2 break;
+rewrite ^/albums/categories/([^/]+)/$ /albums_list.php?category=$1 break;
+rewrite ^/albums/sites/([0-9]+)/$ /sponsors_albums.php?from=$1 break;
+rewrite ^/albums/sites/([^/]+)/([0-9]+)/$ /albums_list.php?cs=$1&from=$2 break;
+rewrite ^/albums/sites/([^/]+)/$ /albums_list.php?cs=$1 break;
+rewrite ^/albums/models/([0-9]+)/$ /models_albums.php?from=$1 break;
+rewrite ^/albums/models/([^/]+)/([0-9]+)/$ /albums_list.php?model=$1&from=$2 break;
+rewrite ^/albums/models/([^/]+)/$ /albums_list.php?model=$1 break;
+rewrite ^/albums/tags/([^/]+)/([0-9]+)/$ /albums_list.php?tag=$1&from=$2 break;
+rewrite ^/albums/tags/([^/]+)/$ /albums_list.php?tag=$1 break;
+rewrite ^/albums/private/([0-9]+)/$ /albums_list.php?is_private=1&from=$1 break;
+rewrite ^/albums/premium/([0-9]+)/$ /albums_list.php?is_private=2&from=$1 break;
+rewrite ^/albums/rss/tags/([^/]+)/$ /rss_albums.php?tag=$1 break;
+rewrite ^/albums/rss/categories/([^/]+)/$ /rss_albums.php?category=$1 break;
+rewrite ^/albums/rss/models/([^/]+)/$ /rss_albums.php?model=$1 break;
+rewrite ^/albums/rss/sites/([^/]+)/$ /rss_albums.php?cs=$1 break;
+rewrite ^/albums/([0-9]+)/([^/]+)/$ /view_album.php?id=$1&dir=$2 break;
+rewrite ^/albums/([^/]+)/$ /view_album.php?dir=$1 break;
+rewrite ^/albums/categories(.*)$ /categories_albums.php break;
+rewrite ^/albums/sites(.*)$ /sponsors_albums.php break;
+rewrite ^/albums/models(.*)$ /models_albums.php break;
+rewrite ^/albums/tags(.*)$ /tags_albums.php break;
+rewrite ^/albums/private(.*)$ /albums_list.php?is_private=1 break;
+rewrite ^/albums/premium(.*)$ /albums_list.php?is_private=2 break;
+rewrite ^/albums/rss/private(.*)$ /rss_albums.php?is_private=1 break;
+rewrite ^/albums/rss/premium(.*)$ /rss_albums.php?is_private=2 break;
+rewrite ^/albums/rss(.*)$ /rss_albums.php break;
+rewrite ^/albums(.*)$ /albums_list.php break;
+
+
+rewrite ^/playlists/([0-9]+)/([^/]+)/$ /view_playlist.php?id=$1&dir=$2 break;
+rewrite ^/playlists/([0-9]+)/$ /playlists_list.php?from=$1 break;
+rewrite ^/playlists(.*)$ /playlists_list.php break;
+
+
+rewrite ^/members/([0-9]+)/$ /member_profile_view.php?user_id=$1 break;
+rewrite ^/members/([0-9]+)/videos/$ /member_profile_view.php?user_id=$1&type=videos&ipp=12 break;
+rewrite ^/members/([0-9]+)/albums/$ /member_profile_view.php?user_id=$1&type=albums&ipp=12 break;
+rewrite ^/members/([0-9]+)/friends/$ /member_profile_view.php?user_id=$1&type=friends&ipp=20 break;
+rewrite ^/members/([0-9]+)/favourites/videos/$ /member_profile_view.php?user_id=$1&type=fav_videos&ipp=12 break;
+rewrite ^/members/([0-9]+)/favourites/albums/$ /member_profile_view.php?user_id=$1&type=fav_albums&ipp=12 break;
+rewrite ^/members/([0-9]+)/playlists/$ /member_profile_view.php?user_id=$1&type=playlists&ipp=12 break;
+rewrite ^/members/([0-9]+)/playlists/([0-9]+)/$ /member_profile_view.php?user_id=$1&type=fav_videos&ipp=12&playlist_id=$2 break;
+rewrite ^/members/([0-9]+)/channels/$ /member_profile_view.php?user_id=$1&type=channels&ipp=12 break;
+rewrite ^/members(.*)$ /community.php break;
+
+rewrite ^/my/favourites/videos-watch-later/$ /member_profile_my.php?type=fav_videos&fav_type=1&ipp=12 break;
+rewrite ^/my/favourites/albums-see-later/$ /member_profile_my.php?type=fav_albums&fav_type=1&ipp=12 break;
+rewrite ^/my/playlists/([0-9]+)/$ /member_profile_my.php?type=fav_videos&ipp=12&playlist_id=$1 break;
+rewrite ^/my/channels/([0-9]+)/$ /member_profile_my.php?type=channel&ipp=12&dvd_id=$1 break;
+rewrite ^/my/messages/([0-9]+)/$ /member_profile_my.php?type=conversation&conversation_user_id=$1 break;
+rewrite ^/my/favourites/albums(.*)$ /member_profile_my.php?type=fav_albums&fav_type=0&ipp=12 break;
+rewrite ^/my/favourites/videos(.*)$ /member_profile_my.php?type=fav_videos&fav_type=0&ipp=12 break;
+rewrite ^/my/playlists(.*)$ /member_profile_my.php?type=playlists&ipp=12 break;
+rewrite ^/my/channels(.*)$ /member_profile_my.php?type=channels&ipp=12 break;
+rewrite ^/my/subscriptions(.*)$ /member_profile_my.php?type=subscriptions break;
+rewrite ^/my/purchases(.*)$ /member_profile_my.php?type=purchases break;
+rewrite ^/my/messages(.*)$ /member_profile_my.php?type=messages break;
+
+rewrite ^/my/videos(.*)$ /member_profile_my.php?type=videos&ipp=12 break;
+rewrite ^/my/albums(.*)$ /member_profile_my.php?type=albums&ipp=12 break;
+rewrite ^/my/friends(.*)$ /member_profile_my.php?type=friends&ipp=20 break;
+rewrite ^/my(.*)$ /member_profile_my.php break;
+
+
+rewrite ^/logout(.*)$ /logout.php break;
+rewrite ^/email(.*)$ /email_links.php break;
+rewrite ^/payments(.*)$ /payment_links.php break;
+rewrite ^/login-required/$ /index.php?mode=async&function=get_block&block_id=logon_logon_form&global=true&error=only_for_members break;
+rewrite ^/login(.*)$ /index.php?mode=async&function=get_block&block_id=logon_logon_form&global=true break;
+rewrite ^/signup(.*)$ /index.php?mode=async&function=get_block&block_id=signup_signup_form_simple&global=true break;
+rewrite ^/upgrade(.*)$ /index.php?mode=async&function=get_block&block_id=upgrade_upgrade_access&global=true break;
+
+rewrite ^/reset-password/$ /index.php?mode=async&function=get_block&block_id=signup_reset_password_form&global=true break;
+rewrite ^/resend-confirmation/$ /index.php?mode=async&function=get_block&block_id=signup_resend_confirmation_form&global=true break;
+
+rewrite ^/create-playlist/$ /index.php?mode=async&function=get_block&block_id=playlist_edit_edit_playlist_form&global=true break;
+rewrite ^/create-channel/$ /index.php?mode=async&function=get_block&block_id=dvd_edit_edit_channel_form&global=true break;
+
+rewrite ^/select-playlist/$ /index.php?mode=async&function=get_block&block_id=list_playlists_playlists_selector&global=true break;
+
+rewrite ^/edit-playlist/([0-9]+)/$ /index.php?mode=async&function=get_block&block_id=playlist_edit_edit_playlist_form&global=true&playlist_id=$1 break;
+rewrite ^/edit-channel/([0-9]+)/$ /index.php?mode=async&function=get_block&block_id=dvd_edit_edit_channel_form&global=true&dvd_id=$1 break;
+rewrite ^/edit-profile/$ /index.php?mode=async&function=get_block&block_id=member_profile_edit_edit_profile_forms_advanced&global=true&action=change_profile break;
+rewrite ^/edit-video/([0-9]+)/$ /member_profile_my.php?type=upload_video&video_id=$1 break;
+rewrite ^/edit-photos/([0-9]+)/$ /member_profile_my.php?type=upload_album&album_id=$1 break;
+
+rewrite ^/change-password/$ /index.php?mode=async&function=get_block&block_id=member_profile_edit_edit_profile_forms_advanced&global=true&action=change_pass break;
+rewrite ^/change-email/$ /index.php?mode=async&function=get_block&block_id=member_profile_edit_edit_profile_forms_advanced&global=true&action=change_email break;
+rewrite ^/delete-profile/$ /index.php?mode=async&function=get_block&block_id=member_profile_delete_delete_profile_form&global=true break;
+rewrite ^/invite(.*)$ /index.php?mode=async&function=get_block&block_id=invite_friend_invite_friend_form&global=true break;
+rewrite ^/feedback(.*)$ /index.php?mode=async&function=get_block&block_id=feedback_feedback_form&global=true break;
+rewrite ^/captcha/([^/]*)/$ /index.php?mode=async&function=show_security_code&captcha_id=$1 break;
+
+rewrite ^/upload-video/$ /member_profile_my.php?type=upload_video break;
+rewrite ^/upload-channel/([0-9]+)/$ /member_profile_my.php?type=upload_video&dvd_id=$1 break;
+rewrite ^/upload-video-preview/([^/]*)/$ /member_profile_my.php?mode=async&action=video_preview&file=$1 break;
+rewrite ^/upload-photos/$ /member_profile_my.php?type=upload_album break;
+rewrite ^/upload-photos-preview/([^/]*)/$ /member_profile_my.php?mode=async&action=album_preview&files=$1 break;
+rewrite ^/upload-progress/([^/]*)/$ /admin/include/get_upload_status_url.php?file=$1 break;
+
+
+rewrite ^/sitemap(.*)$ /sitemap.php break;
+
+rewrite ^/embed/(.+)$ /player/iframe_embed.php?video_id=$1 break;
+
+rewrite ^/related_videos_html/([0-9]+)/?$ /related_videos_html.php?video_id=$1 break;
+
+
+rewrite ^/get_file/([0-9]+)/([^/]*)/(.*)$ /get_file.php?sg_id=$1&hash=$2&file=$3 break;
+rewrite ^/get_image/([0-9]+)/([^/]*)/(.*)/$ /get_image.php?sg_id=$1&hash=$2&file=$3 break;
+
+
+# END
